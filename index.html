@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rubik's Cube</title>
+  <title>Mazen Hassani Portfolio</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
+    }
+    canvas {
+      cursor: grab;
+    }
+    canvas:active {
+      cursor: grabbing;
     }
   </style>
 </head>
@@ -23,20 +29,21 @@
     renderer.setClearColor(0xffffff, 1); // Set background to white
     document.body.appendChild(renderer.domElement);
 
-    // Add OrbitControls for mouse interaction
+    // Add OrbitControls for scene interaction
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true; // Smooth rotation
-    controls.dampingFactor = 0.1; // Friction-like damping effect
-    controls.enableZoom = true;   // Enable zooming with the mouse wheel
-    controls.minDistance = 5;     // Minimum zoom distance
-    controls.maxDistance = 15;    // Maximum zoom distance
+    controls.dampingFactor = 0.1;
+    controls.enableZoom = true;
+    controls.minDistance = 5;
+    controls.maxDistance = 15;
 
-    // Create a group to hold all small cubes (representing the Rubik's Cube)
+    // Group to hold all small cubes
     const rubiksCubeGroup = new THREE.Group();
+    scene.add(rubiksCubeGroup);
 
-    // Size of each small cube and spacing
-    const cubeSize = 0.9; // Size of each small cube
-    const spacing = 0.1; // Space between small cubes
+    // Size and spacing of cubes
+    const cubeSize = 0.9;
+    const spacing = 0.1;
     const colors = [
       0xff0000, // Red
       0x00ff00, // Green
@@ -46,7 +53,13 @@
       0xffffff  // White
     ];
 
-    // Function to create a small cube
+    // Raycaster and mouse setup
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    let selectedCube = null; // Cube being dragged
+    let isDragging = false;
+
+    // Create individual cubes
     function createSmallCube(x, y, z) {
       const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
       const materials = colors.map(color => new THREE.MeshBasicMaterial({ color }));
@@ -56,10 +69,10 @@
         y * (cubeSize + spacing),
         z * (cubeSize + spacing)
       );
-      rubiksCubeGroup.add(cube); // Add the small cube to the group
+      rubiksCubeGroup.add(cube);
     }
 
-    // Generate the 3x3x3 grid of cubes
+    // Create 3x3x3 Rubik's Cube
     for (let x = -1; x <= 1; x++) {
       for (let y = -1; y <= 1; y++) {
         for (let z = -1; z <= 1; z++) {
@@ -68,22 +81,72 @@
       }
     }
 
-    // Add the group to the scene
-    scene.add(rubiksCubeGroup);
+    // Lighting
+    const light = new THREE.AmbientLight(0x404040, 2);
+    scene.add(light);
 
     // Position the camera
-    camera.position.set(4, 4, 8);
+    camera.position.set(6, 6, 12);
     camera.lookAt(0, 0, 0);
+
+    // Handle mouse down
+    function onMouseDown(event) {
+      isDragging = true;
+
+      // Convert mouse position to normalized device coordinates
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      // Raycast to find intersected objects
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(rubiksCubeGroup.children);
+
+      if (intersects.length > 0) {
+        selectedCube = intersects[0].object; // Select the cube
+      }
+    }
+
+    // Handle mouse move
+    function onMouseMove(event) {
+      if (isDragging && selectedCube) {
+        // Convert mouse position to normalized device coordinates
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        // Update raycaster to project cube's new position
+        raycaster.setFromCamera(mouse, camera);
+        const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Move along the Z-plane
+        const intersectPoint = new THREE.Vector3();
+        raycaster.ray.intersectPlane(plane, intersectPoint);
+
+        // Update cube position
+        selectedCube.position.copy(intersectPoint);
+      }
+    }
+
+    // Handle mouse up
+    function onMouseUp() {
+      isDragging = false;
+      selectedCube = null; // Deselect the cube
+    }
+
+    // Add event listeners
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 
     // Animation loop
     function animate() {
       requestAnimationFrame(animate);
-
-      // Update the OrbitControls
-      controls.update();
-
-      // Render the scene
-      renderer.render(scene, camera);
+      controls.update(); // Update OrbitControls
+      renderer.render(scene, camera); // Render the scene
     }
     animate();
   </script>
