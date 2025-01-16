@@ -37,57 +37,62 @@
     controls.minDistance = 5;
     controls.maxDistance = 15;
 
-    // Group to hold all small cubes
-    const rubiksCubeGroup = new THREE.Group();
-    scene.add(rubiksCubeGroup);
-
-    // Size and spacing of cubes
-    const cubeSize = 0.9;
-    const spacing = 0.1;
+    // Cube size and spacing
+    const cubeSize = 1; // Remove spacing by making each cube perfectly aligned
     const colors = [
       0xE67C3B, // Custom Orange
       0xE1E831, // Custom Yellow
       0x64C08C, // Custom Green
       0xA074C5, // Custom Purple
       0xA9D4FF, // Custom Light Blue
-      0x2C6EC5  // Custom Blue
+      0x2C6EC5, // Custom Blue
+      0xFF6347  // Custom Red
     ];
 
     // Raycaster and mouse setup
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-    let selectedCube = null; // Cube being dragged
+    let selectedGroup = null; // The currently selected Tetris piece
     let isDragging = false;
 
-    // Create individual cubes
-    function createSmallCube(x, y, z) {
+    // Function to create a single cube
+    function createCube(x, y, z, colorIndex) {
       const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-      const materials = colors.map(color => new THREE.MeshBasicMaterial({ color }));
-      const cube = new THREE.Mesh(geometry, materials);
-      cube.position.set(
-        x * (cubeSize + spacing),
-        y * (cubeSize + spacing),
-        z * (cubeSize + spacing)
-      );
-      rubiksCubeGroup.add(cube);
+      const material = new THREE.MeshBasicMaterial({ color: colors[colorIndex % colors.length] });
+      const cube = new THREE.Mesh(geometry, material);
+      cube.position.set(x * cubeSize, y * cubeSize, z * cubeSize);
+      return cube;
     }
 
-    // Create 3x3x3 Rubik's Cube
-    for (let x = -1; x <= 1; x++) {
-      for (let y = -1; y <= 1; y++) {
-        for (let z = -1; z <= 1; z++) {
-          createSmallCube(x, y, z);
-        }
-      }
+    // Function to create a Tetris-like piece
+    function createTetrisPiece(positions, colorIndex) {
+      const group = new THREE.Group();
+      positions.forEach(([x, y, z]) => {
+        const cube = createCube(x, y, z, colorIndex);
+        group.add(cube);
+      });
+      scene.add(group);
+      return group;
     }
+
+    // Define Tetris-like pieces (7 in total)
+    const tetrisPieces = [
+      createTetrisPiece([[0, 0, 0], [1, 0, 0], [2, 0, 0]], 0), // I-piece
+      createTetrisPiece([[0, 1, 0], [1, 1, 0], [1, 2, 0]], 1), // S-piece
+      createTetrisPiece([[0, 0, 1], [0, 1, 1], [1, 0, 1]], 2), // L-piece
+      createTetrisPiece([[1, 1, 1], [0, 1, 1], [2, 1, 1], [1, 2, 1]], 3), // T-piece
+      createTetrisPiece([[0, 0, 2], [1, 0, 2], [0, 1, 2], [1, 1, 2]], 4), // Square piece
+      createTetrisPiece([[2, 0, 2], [2, 1, 2], [2, 0, 1], [2, 1, 1]], 5), // Corner piece
+      createTetrisPiece([[0, 2, 2], [1, 2, 2], [1, 1, 2], [2, 2, 2]], 6) // Z-like piece
+    ];
 
     // Lighting
     const light = new THREE.AmbientLight(0x404040, 2);
     scene.add(light);
 
     // Position the camera
-    camera.position.set(6, 6, 12);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(5, 5, 8);
+    camera.lookAt(1, 1, 1);
 
     // Handle mouse down
     function onMouseDown(event) {
@@ -99,35 +104,35 @@
 
       // Raycast to find intersected objects
       raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(rubiksCubeGroup.children);
+      const intersects = raycaster.intersectObjects(tetrisPieces, true); // Intersect with all groups' children
 
       if (intersects.length > 0) {
-        selectedCube = intersects[0].object; // Select the cube
+        selectedGroup = intersects[0].object.parent; // Get the parent group
       }
     }
 
     // Handle mouse move
     function onMouseMove(event) {
-      if (isDragging && selectedCube) {
+      if (isDragging && selectedGroup) {
         // Convert mouse position to normalized device coordinates
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-        // Update raycaster to project cube's new position
+        // Update raycaster to project group position
         raycaster.setFromCamera(mouse, camera);
         const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // Move along the Z-plane
         const intersectPoint = new THREE.Vector3();
         raycaster.ray.intersectPlane(plane, intersectPoint);
 
-        // Update cube position
-        selectedCube.position.copy(intersectPoint);
+        // Move the group
+        selectedGroup.position.copy(intersectPoint);
       }
     }
 
     // Handle mouse up
     function onMouseUp() {
       isDragging = false;
-      selectedCube = null; // Deselect the cube
+      selectedGroup = null; // Deselect the group
     }
 
     // Add event listeners
