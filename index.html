@@ -37,16 +37,16 @@
     controls.minDistance = 5;
     controls.maxDistance = 15;
 
-    // Cube size and spacing
-    const cubeSize = 1; // Remove spacing by making each cube perfectly aligned
+    // Cube size
+    const cubeSize = 1; // No spacing to ensure pieces fit perfectly
     const colors = [
-      0xE67C3B, // Custom Orange
-      0xE1E831, // Custom Yellow
-      0x64C08C, // Custom Green
-      0xA074C5, // Custom Purple
-      0xA9D4FF, // Custom Light Blue
-      0x2C6EC5, // Custom Blue
-      0xFF6347  // Custom Red
+      0xE67C3B, // Orange
+      0xE1E831, // Yellow
+      0x64C08C, // Green
+      0xA074C5, // Purple
+      0xA9D4FF, // Light Blue
+      0x2C6EC5, // Blue
+      0xFF6347  // Red
     ];
 
     // Raycaster and mouse setup
@@ -75,16 +75,21 @@
       return group;
     }
 
-    // Define Tetris-like pieces (7 in total)
-    const tetrisPieces = [
-      createTetrisPiece([[0, 0, 0], [1, 0, 0], [2, 0, 0]], 0), // I-piece
-      createTetrisPiece([[0, 1, 0], [1, 1, 0], [1, 2, 0]], 1), // S-piece
-      createTetrisPiece([[0, 0, 1], [0, 1, 1], [1, 0, 1]], 2), // L-piece
-      createTetrisPiece([[1, 1, 1], [0, 1, 1], [2, 1, 1], [1, 2, 1]], 3), // T-piece
-      createTetrisPiece([[0, 0, 2], [1, 0, 2], [0, 1, 2], [1, 1, 2]], 4), // Square piece
-      createTetrisPiece([[2, 0, 2], [2, 1, 2], [2, 0, 1], [2, 1, 1]], 5), // Corner piece
-      createTetrisPiece([[0, 2, 2], [1, 2, 2], [1, 1, 2], [2, 2, 2]], 6) // Z-like piece
-    ];
+    // Pieces as defined in the prompt
+    const pieces = {
+      "1st": [[0, 0, 0], [1, 0, 0], [2, 0, 0]],
+      "2nd": [[0, 0, 1], [0, 1, 1], [0, 1, 2], [1, 0, 1]],
+      "3rd": [[0, 0, 2], [1, 0, 2], [2, 0, 2], [1, 1, 2]],
+      "4th": [[0, 1, 0], [0, 2, 0], [1, 2, 0], [0, 2, 1]],
+      "5th": [[0, 2, 2], [1, 2, 2], [2, 2, 2], [2, 1, 2]],
+      "6th": [[1, 1, 0], [2, 1, 0], [2, 2, 0], [2, 2, 1]],
+      "7th": [[1, 2, 1], [1, 1, 1], [2, 1, 1], [2, 0, 1]]
+    };
+
+    // Create the Tetris pieces
+    const tetrisPieces = Object.values(pieces).map((positions, index) =>
+      createTetrisPiece(positions, index)
+    );
 
     // Lighting
     const light = new THREE.AmbientLight(0x404040, 2);
