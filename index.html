@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
             --accent-color: #b3424a;
             --subtle-accent: rgba(179, 66, 74, 0.2);
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -29,7 +30,7 @@
             background-blend-mode: overlay;
             min-height: 100vh;
         }
-        
+
         body:before {
             content: "";
             position: fixed;
@@ -40,7 +41,7 @@
             background: rgba(0, 0, 0, 0.8);
             z-index: -1;
         }
-        
+
         header {
             background-color: var(--header-color);
             color: white;
@@ -50,7 +51,7 @@
             overflow: hidden;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
-        
+
         header:before {
             content: "";
             position: absolute;
@@ -58,27 +59,27 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('/api/placeholder/1200/600');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('/api/placeholder/1200/600');
             background-size: cover;
             background-position: center;
             z-index: -1;
             opacity: 0.4;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
         }
-        
+
         h1 {
             margin: 0;
             font-weight: 400;
             font-size: 2.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
-        
+
         .subtitle {
             margin-top: 0.5rem;
             font-weight: 300;
@@ -88,21 +89,21 @@
             margin-right: auto;
             line-height: 1.6;
         }
-        
+
         .quote {
             font-style: italic;
             opacity: 0.7;
             margin-top: 1.5rem;
             font-size: 1.1rem;
         }
-        
+
         .timeline {
             position: relative;
             max-width: 1200px;
             margin: 4rem auto;
             padding-bottom: 4rem;
         }
-        
+
         .timeline::after {
             content: '';
             position: absolute;
@@ -112,9 +113,9 @@
             bottom: 0;
             left: 50%;
             margin-left: -3px;
-            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
@@ -123,7 +124,7 @@
             box-sizing: border-box;
             margin-bottom: 40px;
         }
-        
+
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -135,87 +136,87 @@
             top: 15px;
             border-radius: 50%;
             z-index: 1;
-            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
-        
+
         .left {
             left: 0;
         }
-        
+
         .right {
             left: 50%;
         }
-        
+
         .right::after {
             left: -10px;
         }
-        
+
         .content {
             padding: 25px;
             background-color: var(--card-bg-color);
             position: relative;
             border-radius: 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
             border-left: 4px solid var(--accent-color);
         }
-        
+
         .content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
         }
-        
+
         .date {
             font-weight: bold;
             color: var(--secondary-text);
             font-size: 0.9rem;
             letter-spacing: 1px;
         }
-        
+
         .name {
             font-size: 1.4rem;
             margin: 0.7rem 0;
             color: var(--text-color);
         }
-        
+
         .description {
             line-height: 1.6;
             margin-bottom: 1rem;
         }
-        
+
         .details {
             margin-top: 1.5rem;
             display: none;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             line-height: 1.7;
         }
-        
+
         .image-container {
             margin: 1rem 0;
             overflow: hidden;
             border-radius: 4px;
             max-height: 250px;
         }
-        
+
         .timeline-image {
             width: 100%;
             height: auto;
             transition: all 0.5s ease;
             display: block;
         }
-        
+
         .content:hover .timeline-image {
             transform: scale(1.05);
         }
-        
+
         .sources {
             font-size: 0.85rem;
             opacity: 0.7;
             margin-top: 1rem;
             font-style: italic;
         }
-        
+
         .expand-btn {
             background: none;
             border: none;
@@ -230,27 +231,27 @@
             display: block;
             width: 100%;
         }
-        
+
         .expand-btn:hover {
             background-color: var(--subtle-accent);
         }
-        
+
         .historic-event {
             border-left: 4px solid #6c757d;
         }
-        
+
         .memorial {
             border-left: 4px solid var(--accent-color);
         }
-        
+
         .historic-event .date:before {
             content: "Historic Event • ";
         }
-        
+
         .memorial .date:before {
             content: "Memorial • ";
         }
-        
+
         .age {
             display: inline-block;
             background-color: var(--subtle-accent);
@@ -259,45 +260,58 @@
             font-size: 0.9rem;
             margin-top: 5px;
         }
-        
+
         .loading {
             text-align: center;
             padding: 2rem;
             display: none;
             color: var(--secondary-text);
         }
-        
+
         .loading:after {
             content: "...";
             animation: dots 1.5s infinite;
         }
-        
+
         @keyframes dots {
-            0%, 20% { content: "."; }
-            40% { content: ".."; }
-            60%, 100% { content: "..."; }
+
+            0%,
+            20% {
+                content: ".";
+            }
+
+            40% {
+                content: "..";
+            }
+
+            60%,
+            100% {
+                content: "...";
+            }
         }
-        
+
         #admin-form {
             max-width: 800px;
             margin: 2rem auto;
             padding: 2rem;
             background-color: rgba(30, 30, 30, 0.9);
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             color: var(--text-color);
         }
-        
-        input, textarea, select {
+
+        input,
+        textarea,
+        select {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid #333;
@@ -306,13 +320,15 @@
             color: var(--text-color);
             font-family: inherit;
         }
-        
-        input:focus, textarea:focus, select:focus {
+
+        input:focus,
+        textarea:focus,
+        select:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 0 2px var(--subtle-accent);
         }
-        
+
         button {
             background-color: var(--accent-color);
             color: white;
@@ -323,12 +339,12 @@
             font-size: 1rem;
             transition: all 0.2s;
         }
-        
+
         button:hover {
             background-color: #a13841;
             transform: translateY(-2px);
         }
-        
+
         .admin-toggle {
             position: fixed;
             bottom: 20px;
@@ -342,19 +358,19 @@
             height: 50px;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
         }
-        
+
         .admin-toggle:hover {
             background-color: var(--accent-color);
             transform: rotate(90deg);
         }
-        
+
         .audio-control {
             position: fixed;
             bottom: 20px;
@@ -366,17 +382,17 @@
             border-radius: 30px;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             font-size: 0.9rem;
         }
-        
+
         .audio-icon {
             margin-right: 8px;
             font-size: 1.2rem;
         }
-        
+
         .candle-container {
             position: fixed;
             bottom: 0;
@@ -389,7 +405,7 @@
             z-index: -1;
             pointer-events: none;
         }
-        
+
         .candle {
             width: 12px;
             height: 40px;
@@ -398,7 +414,7 @@
             position: relative;
             opacity: 0.7;
         }
-        
+
         .candle:before {
             content: "";
             position: absolute;
@@ -411,14 +427,27 @@
             box-shadow: 0 0 20px #fff, 0 0 40px #ff9d00, 0 0 60px #ff9d00, 0 0 80px #ff9d00;
             animation: flicker 1s ease-in-out infinite alternate;
         }
-        
+
         @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            25% { opacity: 0.8; }
-            50% { opacity: 0.9; }
-            75% { opacity: 0.7; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            25% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+
+            75% {
+                opacity: 0.7;
+            }
         }
-        
+
         .info-box {
             position: absolute;
             top: 20px;
@@ -428,63 +457,67 @@
             border-radius: 8px;
             border-left: 4px solid var(--accent-color);
             max-width: 300px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transform: translateY(-20px);
             transition: all 0.5s ease;
         }
-        
+
         .info-box.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         @media screen and (max-width: 768px) {
             .timeline::after {
                 left: 31px;
             }
-            
+
             .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
                 margin-bottom: 30px;
             }
-            
+
             .timeline-item::after {
                 left: 21px;
                 right: auto;
             }
-            
-            .left, .right {
+
+            .left,
+            .right {
                 left: 0;
             }
-            
+
             h1 {
                 font-size: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
             <h1>Gaza Memorial Timeline</h1>
-            <p class="subtitle">Honoring the lives lost and documenting Gaza's history through decades of conflict. This timeline serves as a historical record and tribute to those who have suffered, particularly the children whose futures were cut short.</p>
+            <p class="subtitle">Honoring the lives lost and documenting Gaza's history through decades of conflict. This
+                timeline serves as a historical record and tribute to those who have suffered, particularly the children
+                whose futures were cut short.</p>
             <p class="quote">"To forget a Holocaust is to kill twice." - Elie Wiesel</p>
         </div>
     </header>
-    
+
     <div class="container">
         <div class="timeline" id="timeline-container">
             <!-- Timeline items will be inserted here by JavaScript -->
         </div>
-        
+
         <div class="loading" id="loading">
             Loading more entries
         </div>
     </div>
-    
+
     <!-- Admin Form (Hidden by default) -->
     <div id="admin-form" style="display: none;">
         <h2>Add New Entry</h2>
@@ -496,273 +529,341 @@
                     <option value="historic-event">Historic Event</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="entry-date">Date:</label>
                 <input type="date" id="entry-date" name="date" required>
             </div>
-            
+
             <div class="form-group memorial-field">
                 <label for="entry-name">Name:</label>
                 <input type="text" id="entry-name" name="name">
             </div>
-            
+
             <div class="form-group memorial-field">
                 <label for="entry-age">Age:</label>
                 <input type="number" id="entry-age" name="age" min="0">
             </div>
-            
+
             <div class="form-group historic-field">
                 <label for="entry-title">Event Title:</label>
                 <input type="text" id="entry-title" name="title">
             </div>
-            
+
             <div class="form-group">
                 <label for="entry-description">Description:</label>
                 <textarea id="entry-description" name="description" rows="4" required></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="entry-image">Image URL (Optional):</label>
                 <input type="text" id="entry-image" name="image" placeholder="Leave blank to use placeholder">
             </div>
-            
+
             <div class="form-group">
                 <label for="entry-details">Additional Details (Optional):</label>
                 <textarea id="entry-details" name="details" rows="6"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="entry-sources">Sources/References (Optional):</label>
                 <textarea id="entry-sources" name="sources" rows="2"></textarea>
             </div>
-            
+
             <button type="submit">Save Entry</button>
             <button type="button" id="cancel-btn">Cancel</button>
         </form>
     </div>
-    
+
     <div class="audio-control" id="audio-control">
         <span class="audio-icon">♫</span>
         <span id="audio-text">Play Background Music</span>
     </div>
-    
+
     <audio id="background-music" loop>
         <source src="https://cdnjs.cloudflare.com/ajax/libs/SoundJS/1.0.2/soundjs.min.js" type="audio/mpeg">
         <!-- In a real implementation, you would use an actual music file instead of this CDN link -->
     </audio>
-    
+
     <button class="admin-toggle" id="admin-toggle">+</button>
-    
+
     <div class="candle-container" id="candle-container">
         <!-- Candles will be inserted here by JavaScript -->
     </div>
-    
+
     <div class="info-box" id="info-box">
         <h3>About This Timeline</h3>
-        <p>This memorial timeline documents the historical events in Gaza and honors the innocent lives lost during conflicts.</p>
+        <p>This memorial timeline documents the historical events in Gaza and honors the innocent lives lost during
+            conflicts.</p>
         <p>Scroll down to explore more stories and historical moments.</p>
     </div>
-    
+
     <script>
         // Sample extended data
         const timelineData = [
             {
-                type: 'historic-event',
-                date: '1956-10-29',
-                title: 'Suez Crisis & Gaza Massacre',
-                description: 'Israeli forces invaded Gaza during the Suez Crisis. Massacres occurred in Khan Yunis and Rafah refugee camps.',
-                details: 'During the 1956 Suez Crisis, Israeli forces occupied the Gaza Strip. In November, Israeli troops committed massacres in Khan Yunis and Rafah refugee camps. According to UNRWA and Palestinian sources, hundreds of civilians were killed. These events marked one of the early tragedies in Gaza\'s modern history.',
-                sources: 'UN archives, historical records',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1948-05-14",
+                "title": "Creation of Israel and Palestinian Nakba",
+                "description": "The State of Israel was established, leading to the first Arab-Israeli war and the displacement of hundreds of thousands of Palestinians.",
+                "details": "Following Israel's declaration of independence, neighboring Arab states invaded, beginning the 1948 Arab-Israeli War. During this period, approximately 750,000 Palestinians fled or were expelled from their homes in what Palestinians call 'Al-Nakba' (The Catastrophe). Many refugees fled to the Gaza Strip, which came under Egyptian administration after the war.",
+                "sources": "United Nations Relief and Works Agency (UNRWA), Institute for Palestine Studies, Pappe, Ilan (2006), 'The Ethnic Cleansing of Palestine'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '1967-06-05',
-                title: 'Six-Day War and Occupation of Gaza',
-                description: 'Israel occupied the Gaza Strip during the Six-Day War, beginning a military occupation that would last for decades.',
-                details: 'The Six-Day War resulted in Israel occupying the Gaza Strip, the West Bank, East Jerusalem, the Sinai Peninsula, and the Golan Heights. For Gaza, this began a long-term military occupation. The war created a new wave of Palestinian refugees and established Israeli control over the daily lives of Palestinians in Gaza.',
-                sources: 'Historical archives, UN documents',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1949-02-24",
+                "title": "Gaza Under Egyptian Administration",
+                "description": "The Egypt-Israel Armistice Agreement placed the Gaza Strip under Egyptian military administration.",
+                "details": "Following the 1948 war, Egypt took control of the Gaza Strip. The territory's population swelled with Palestinian refugees, creating severe demographic pressure. During this period, Gaza was not annexed by Egypt, leaving residents in a state of political limbo without citizenship rights.",
+                "sources": "United Nations archives, Filiu, Jean-Pierre (2014), 'Gaza: A History'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '1987-12-08',
-                title: 'First Intifada Begins',
-                description: 'Palestinians in Gaza initiated the First Intifada, a mass uprising against the Israeli occupation.',
-                details: 'The First Intifada began in the Jabalia refugee camp in Gaza after an Israeli military vehicle killed four Palestinians. The uprising spread throughout Gaza and the West Bank and continued until 1993. It was characterized by civil disobedience, general strikes, boycotts, and stone-throwing by Palestinian youth against Israeli military forces.',
-                sources: 'News archives, historical documentation',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1956-10-29",
+                "title": "Suez Crisis & Gaza Massacre",
+                "description": "Israeli forces invaded Gaza during the Suez Crisis. Massacres occurred in Khan Yunis and Rafah refugee camps.",
+                "details": "During the 1956 Suez Crisis, Israeli forces occupied the Gaza Strip. In November, Israeli troops committed massacres in Khan Yunis and Rafah refugee camps. According to UNRWA and Palestinian sources, hundreds of civilians were killed. These events marked one of the early tragedies in Gaza's modern history.",
+                "sources": "UN archives, historical records, Joe Sacco (2009), 'Footnotes in Gaza'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '1994-05-04',
-                title: 'Gaza-Jericho Agreement',
-                description: 'The agreement established the Palestinian Authority and granted limited self-governance to Gaza and Jericho.',
-                details: 'As part of the Oslo peace process, the Gaza-Jericho Agreement (Cairo Agreement) transferred limited authority to the Palestinian Authority in the Gaza Strip and Jericho. It was the first step in implementing Palestinian self-governance, though Israel maintained control of borders, airspace, and Israeli settlements in Gaza.',
-                sources: 'Official agreement documents, diplomatic records',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1957-03-08",
+                "title": "Israeli Withdrawal from Gaza",
+                "description": "Under international pressure, Israel withdrew from the Gaza Strip, which returned to Egyptian control.",
+                "details": "After strong pressure from the United States and the United Nations, Israel withdrew from the Gaza Strip in March 1957. The territory returned to Egyptian administration, while the refugee crisis continued to worsen with limited economic opportunities for Gaza's population.",
+                "sources": "UN Security Council archives, Benny Morris (1993), 'Israel's Border Wars'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2000-09-28',
-                title: 'Second Intifada Erupts',
-                description: 'A second Palestinian uprising began, resulting in increased violence and casualties in Gaza and the West Bank.',
-                details: 'The Second Intifada was characterized by more intense violence than the First Intifada. In Gaza, it led to Israeli military operations, targeted assassinations, and air strikes. Palestinian militant groups carried out suicide bombings and rocket attacks. The uprising resulted in thousands of casualties, predominantly Palestinian.',
-                sources: 'News archives, human rights reports',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1967-06-05",
+                "title": "Six-Day War and Israeli Occupation of Gaza",
+                "description": "Israel occupied the Gaza Strip during the Six-Day War, beginning a long-term military occupation.",
+                "details": "During the 1967 Six-Day War, Israel captured the Gaza Strip from Egypt, beginning what would become a decades-long military occupation. This established direct Israeli control over the Palestinian population of Gaza and brought significant changes to daily life, including the establishment of Israeli settlements in the territory.",
+                "sources": "UN archives, Journal of Palestine Studies, Michael Oren (2002), 'Six Days of War'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2005-09-12',
-                title: 'Israeli Disengagement from Gaza',
-                description: 'Israel withdrew its settlements and military presence from the Gaza Strip after 38 years of occupation.',
-                details: 'Under Prime Minister Ariel Sharon, Israel implemented a unilateral disengagement plan, evacuating all Israeli settlers and dismantling military installations in the Gaza Strip. However, Israel maintained control over Gaza\'s borders, coastline, and airspace, effectively turning Gaza into what many have called "an open-air prison."',
-                sources: 'Government records, international media coverage',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1970-1971",
+                "title": "Iron Fist Policy in Gaza",
+                "description": "Israeli General Ariel Sharon implemented harsh security measures in Gaza to suppress Palestinian resistance.",
+                "details": "From 1970-1971, General Ariel Sharon directed a harsh crackdown in Gaza aimed at eliminating Palestinian resistance. The campaign included widespread arrests, house demolitions, and deportations. Roads were cut through refugee camps to facilitate military control, destroying many homes in the process.",
+                "sources": "Journal of Palestine Studies, Sara Roy (2007), 'Failing Peace: Gaza and the Palestinian-Israeli Conflict'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2006-01-25',
-                title: 'Hamas Wins Palestinian Legislative Elections',
-                description: 'Hamas won the Palestinian legislative elections, leading to increased tensions and eventual blockade of Gaza.',
-                details: 'Hamas unexpectedly won a majority of seats in the Palestinian Legislative Council elections. This victory led to tensions with Fatah and the international community. Following Hamas\'s takeover of Gaza in 2007, Israel and Egypt imposed a blockade on the territory that severely restricted the movement of people and goods.',
-                sources: 'Election records, policy documents',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1978-09-17",
+                "title": "Camp David Accords",
+                "description": "The Camp David Accords between Egypt and Israel included provisions for Palestinian autonomy in Gaza, which were never fully implemented.",
+                "details": "The Camp David Accords between Egypt and Israel included a framework for Palestinian self-government in the Gaza Strip and West Bank. However, these autonomy provisions were never fully implemented, and Israeli military occupation continued. The accords also normalized relations between Egypt and Israel.",
+                "sources": "The Camp David Accords (official text), William B. Quandt (2016), 'Camp David: Peacemaking and Politics'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2008-12-27',
-                title: 'Operation Cast Lead Begins',
-                description: 'Israeli military operation in Gaza that resulted in significant civilian casualties and destruction of infrastructure.',
-                details: 'Operation Cast Lead was a three-week armed conflict that began on December 27, 2008. The UN Fact Finding Mission reported that 1,383 Palestinians were killed, including 333 children. The operation caused widespread destruction of homes, schools, hospitals, and infrastructure.',
-                sources: 'UN Reports, human rights organizations',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1987-12-08",
+                "title": "First Intifada Begins",
+                "description": "Palestinians in Gaza initiated the First Intifada, a widespread uprising against Israeli occupation.",
+                "details": "The First Intifada (popular uprising) began in the Jabalia refugee camp in Gaza after an Israeli military vehicle killed four Palestinians. The uprising quickly spread throughout Gaza and the West Bank. Palestinians engaged in demonstrations, general strikes, boycotts of Israeli products, and stone-throwing. Israel responded with force, resulting in hundreds of Palestinian deaths and thousands of injuries over the course of the uprising.",
+                "sources": "Journal of Palestine Studies, Zachary Lockman and Joel Beinin (1989), 'Intifada: The Palestinian Uprising Against Israeli Occupation'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2012-11-14',
-                title: 'Operation Pillar of Defense',
-                description: 'Eight-day Israeli military operation in Gaza that began with the killing of Hamas military chief Ahmed Jabari.',
-                details: 'The operation included hundreds of air strikes on Gaza and rocket fire from Gaza into Israel. By the end of the operation, 174 Palestinians were killed, including 33 children, and infrastructure was heavily damaged. A ceasefire was brokered by Egypt on November 21.',
-                sources: 'Military reports, news coverage, NGO documentation',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1993-09-13",
+                "title": "Oslo Accords",
+                "description": "The Oslo Accords created the Palestinian Authority and established limited Palestinian self-rule in Gaza.",
+                "details": "The Oslo Accords, signed between Israel and the PLO, created the Palestinian Authority and established a framework for limited Palestinian self-governance in parts of Gaza and the West Bank. The agreement was intended as a first step toward a final status agreement, which was supposed to be reached within five years but never materialized.",
+                "sources": "Oslo Accords (official text), Edward Said (2000), 'The End of the Peace Process: Oslo and After'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2014-07-08',
-                title: 'Operation Protective Edge',
-                description: '50-day conflict that resulted in over 2,200 Palestinian deaths, including hundreds of children.',
-                details: 'This was one of the deadliest and most destructive conflicts in Gaza. According to UN figures, 2,251 Palestinians were killed, including 1,462 civilians and 551 children. Over 11,000 Palestinians were injured, and approximately 18,000 housing units were destroyed or severely damaged, displacing about 100,000 people.',
-                sources: 'UN investigations, human rights reports',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "1994-05-18",
+                "title": "Palestinian Authority Takes Control in Gaza",
+                "description": "The Palestinian Authority assumed control of parts of Gaza under the Gaza-Jericho Agreement.",
+                "details": "Following the Oslo Accords, the Palestinian Authority assumed administrative control over parts of the Gaza Strip, though Israel maintained control over borders, airspace, and Israeli settlements in the territory. This began the complex system of divided control that would characterize Gaza for the next decade.",
+                "sources": "Gaza-Jericho Agreement (official text), UN archives",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2018-03-30',
-                title: 'Great March of Return Protests Begin',
-                description: 'Weekly protests at the Gaza-Israel border demanding the right of return for Palestinian refugees and an end to the blockade.',
-                details: 'The protests continued for more than a year and resulted in over 200 Palestinian deaths and thousands of injuries, many from Israeli sniper fire. The UN Commission of Inquiry found that Israeli forces may have committed war crimes and crimes against humanity during the protests.',
-                sources: 'UN Commission of Inquiry, media coverage',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "2000-09-28",
+                "title": "Second Intifada Begins",
+                "description": "The Second Intifada erupted, leading to increased violence in Gaza and harsh Israeli military responses.",
+                "details": "The Second Intifada began following Ariel Sharon's controversial visit to the Temple Mount/Al-Aqsa Mosque compound. In Gaza, the uprising was marked by armed resistance, suicide bombings, and rocket attacks, with Israel responding with military incursions, targeted assassinations, and strict movement restrictions that severely impacted Gaza's economy and quality of life.",
+                "sources": "B'Tselem human rights organization, Journal of Palestine Studies, Rashid Khalidi (2006), 'The Iron Cage'",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2021-05-10',
-                title: 'Operation Guardian of the Walls',
-                description: '11-day conflict between Israel and Hamas that caused significant destruction in Gaza.',
-                details: 'The conflict resulted in at least 256 Palestinians killed in Gaza, including 66 children. It also caused extensive damage to infrastructure, with an estimated 1,770 housing and commercial units destroyed and 16,250 damaged, exacerbating Gaza\'s housing crisis.',
-                sources: 'UN OCHA, humanitarian organizations',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "2005-08-15",
+                "title": "Israeli Disengagement from Gaza",
+                "description": "Israel unilaterally withdrew settlements and military positions from within the Gaza Strip.",
+                "details": "In August 2005, Israel implemented its unilateral disengagement plan, removing approximately 8,000 Israeli settlers and military installations from within Gaza. However, Israel maintained control over Gaza's borders, airspace, and territorial waters, effectively keeping Gaza under external control. This has been described by many international organizations as a continued occupation in a different form.",
+                "sources": "UN reports, Human Rights Watch, Gisha - Legal Center for Freedom of Movement",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2023-10-07',
-                title: 'Israel-Hamas War Begins',
-                description: 'Conflict erupted following Hamas attacks on Israel, leading to massive Israeli bombardment of Gaza.',
-                details: 'The conflict began with Hamas attacks on southern Israel, followed by intensive Israeli airstrikes and a ground invasion of Gaza. By the end of 2023, over 20,000 Palestinians had been killed according to Gaza health authorities, with the majority being women and children. The war caused a severe humanitarian crisis with widespread displacement, destruction of homes and infrastructure, and limited access to food, water, and medical care.',
-                sources: 'UN reports, international media coverage, humanitarian organizations',
-                image: '/api/placeholder/600/400'
+                "type": "historic-event",
+                "date": "2006-01-25",
+                "title": "Hamas Wins Palestinian Legislative Elections",
+                "description": "Hamas won a majority in the Palestinian Legislative Council elections, leading to international sanctions against Gaza.",
+                "details": "Hamas won a majority in the Palestinian Legislative Council elections, defeating the ruling Fatah party. In response, Israel, the United States, and the European Union imposed economic sanctions on the Hamas-led government, demanding that it recognize Israel, renounce violence, and honor previous agreements. This began a period of increased isolation for Gaza.",
+                "sources": "Carter Center election monitoring reports, International Crisis Group",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-15',
-                name: 'Layan Alshaer',
-                age: 9,
-                description: 'Layan loved drawing and dreamed of becoming an artist. She was known for her bright smile and kindness to her classmates.',
-                details: 'Layan was passionate about art and would often share her drawings with neighbors. Her favorite subjects were landscapes and animals. Her teachers noted her exceptional creativity and gentle nature. She is survived by her parents and two younger siblings.',
-                sources: 'Family testimonials',
-                image: '/api/placeholder/400/300'
+                "type": "historic-event",
+                "date": "2007-06-14",
+                "title": "Hamas Takes Control of Gaza",
+                "description": "After internal fighting with Fatah, Hamas took full control of the Gaza Strip, leading to a political split in Palestinian governance.",
+                "details": "Following months of tension and clashes between Hamas and Fatah, Hamas forces took complete control of the Gaza Strip. This led to a division in Palestinian governance, with Hamas controlling Gaza and Fatah/the Palestinian Authority controlling parts of the West Bank. In response, Israel and Egypt tightened border restrictions, beginning the Gaza blockade.",
+                "sources": "International Crisis Group, UN reports, Human Rights Watch",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-12',
-                name: 'Ahmad Khalil',
-                age: 7,
-                description: 'Ahmad enjoyed playing football and was known for his energy and enthusiasm. He dreamed of becoming a doctor.',
-                details: 'Ahmad was the youngest of three siblings and had just started his second year of school. His teachers described him as bright and curious. He loved helping his mother in their small garden and was learning to read both Arabic and English.',
-                sources: 'School records, family statements',
-                image: '/api/placeholder/400/300'
+                "type": "historic-event",
+                "date": "2007-06-19",
+                "title": "Beginning of the Gaza Blockade",
+                "description": "Israel imposed a land, air, and sea blockade on Gaza following Hamas's takeover.",
+                "details": "After Hamas took control of Gaza, Israel declared Gaza a 'hostile territory' and imposed a comprehensive blockade, severely restricting the movement of people and goods. Egypt also largely closed its border with Gaza. The blockade has had devastating effects on Gaza's economy and infrastructure, leading to what the UN has called a 'humanitarian crisis' and 'de-development' of the territory.",
+                "sources": "UN Office for the Coordination of Humanitarian Affairs (OCHA), World Bank, Gisha - Legal Center for Freedom of Movement",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-18',
-                name: 'Sama Ibrahim',
-                age: 5,
-                description: 'Sama was known for her love of singing and storytelling. She brought joy to her family with her cheerful personality.',
-                details: 'Sama had just started kindergarten and was excited about learning to read. Her favorite activity was helping her grandmother in the kitchen. She had a collection of stuffed animals she would tell stories to each night before bed. Her parents described her as "our little sunshine."',
-                sources: 'Family testimony',
-                image: '/api/placeholder/400/300'
+                "type": "historic-event",
+                "date": "2008-12-27",
+                "title": "Operation Cast Lead",
+                "description": "Israel launched a major military operation in Gaza following rocket fire into Israel.",
+                "details": "Israel launched Operation Cast Lead, a three-week military offensive in Gaza following rocket fire into Israel. The operation resulted in approximately 1,400 Palestinian deaths, including many civilians, according to Palestinian and international sources. Israeli military actions included airstrikes and a ground invasion, causing widespread destruction of homes and infrastructure in Gaza.",
+                "sources": "UN Fact Finding Mission on the Gaza Conflict (Goldstone Report), B'Tselem, Palestinian Centre for Human Rights",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-20',
-                name: 'Yousef Al-Najjar',
-                age: 11,
-                description: 'Yousef excelled in mathematics and hoped to become an engineer. He was always eager to help younger children with their studies.',
-                details: 'Yousef was described by his teachers as exceptionally bright with particular talent in mathematics and science. He would often stay after school to help his classmates understand difficult concepts. He dreamed of rebuilding Gaza with stronger, safer buildings. Yousef also enjoyed playing chess and had won several local tournaments.',
-                sources: 'School records, community remembrances',
-                image: '/api/placeholder/400/300'
+                "type": "historic-event",
+                "date": "2010-05-31",
+                "title": "Gaza Flotilla Raid",
+                "description": "Israeli forces raided a flotilla attempting to break the Gaza blockade, killing nine activists and increasing international attention on Gaza.",
+                "details": "Israeli naval commandos raided the Gaza Freedom Flotilla, a group of ships attempting to break the blockade and deliver humanitarian aid to Gaza. Nine Turkish activists were killed on the lead ship, the Mavi Marmara, causing an international incident and increased scrutiny of the Gaza blockade. The incident damaged Israeli-Turkish relations and led to increased international pressure regarding the situation in Gaza.",
+                "sources": "UN Human Rights Council Fact-Finding Mission, Turkish investigation, Israeli Turkel Commission",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-25',
-                name: 'Amira Hamdan',
-                age: 6,
-                description: 'Amira loved butterflies and flowers. She was known for her curious nature and would ask endless questions about the world.',
-                details: 'Amira collected drawings of butterflies and had memorized many of their names. She dreamed of becoming a scientist to study them. Her kindergarten teacher noted her exceptional curiosity and how she always wanted to understand how things worked. Amira\'s parents remembered her for her infectious laughter and boundless energy.',
-                sources: 'Family and teacher testimonies',
-                image: '/api/placeholder/400/300'
+                "type": "historic-event",
+                "date": "2012-11-14",
+                "title": "Operation Pillar of Defense",
+                "description": "Israel launched another major military operation in Gaza, resulting in significant Palestinian casualties.",
+                "details": "Israel launched Operation Pillar of Defense following rocket fire from Gaza. The eight-day conflict included the targeted killing of Hamas military chief Ahmed Jabari and resulted in over 160 Palestinian deaths, many of them civilians, according to Palestinian sources. Hamas and other groups fired rockets into Israel, killing six Israelis. The operation ended with a ceasefire brokered by Egypt.",
+                "sources": "UN Office for the Coordination of Humanitarian Affairs (OCHA), B'Tselem, Human Rights Watch",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-30',
-                name: 'Omar Suleiman',
-                age: 10,
-                description: 'Omar was a talented storyteller who loved to write poems and stories. He aspired to become a journalist.',
-                details: 'Omar carried a small notebook everywhere he went, jotting down observations and story ideas. His teachers were impressed by his vocabulary and imagination. Omar had recently written a story about birds flying freely across borders that his school had displayed on its bulletin board. He was the oldest of four siblings and took his role as big brother very seriously.',
-                sources: 'School publications, family interviews',
-                image: '/api/placeholder/400/300'
+                "type": "historic-event",
+                "date": "2014-07-08",
+                "title": "Operation Protective Edge",
+                "description": "Israel launched its deadliest operation in Gaza since 2005, resulting in over 2,200 Palestinian deaths.",
+                "details": "Israel launched Operation Protective Edge, a 50-day military campaign that included airstrikes and a ground invasion. According to Palestinian sources and UN investigations, over 2,200 Palestinians were killed, including approximately 1,500 civilians and more than 500 children. 73 Israelis were also killed, including 67 soldiers. The operation caused massive destruction in Gaza, with entire neighborhoods leveled and infrastructure severely damaged.",
+                "sources": "UN Independent Commission of Inquiry, B'Tselem, Palestinian Centre for Human Rights, Euro-Mediterranean Human Rights Monitor",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'memorial',
-                date: '2023-10-12',
-                name: 'Ahmad Khalil',
-                age: 7,
-                description: 'Ahmad enjoyed playing football and was known for his energy and enthusiasm. He dreamed of becoming a doctor.',
-                details: 'Ahmad was the youngest of three siblings and had just started his second year of school. His teachers described him as bright and curious. He loved helping his mother in their small garden and was learning to read both Arabic and English.',
-                sources: 'School records, family statements'
+                "type": "historic-event",
+                "date": "2018-03-30",
+                "title": "Great March of Return Begins",
+                "description": "Palestinians in Gaza began weekly protests near the Israel-Gaza border, leading to numerous casualties.",
+                "details": "Palestinians in Gaza began the 'Great March of Return,' a series of weekly protests near the Israel-Gaza border demanding the right of return for refugees and an end to the blockade. Over the course of approximately 18 months of protests, more than 200 Palestinians were killed and thousands wounded by Israeli forces, according to Palestinian health officials and human rights organizations. The Israeli military stated it was responding to threats to the border fence and violent actions.",
+                "sources": "UN Human Rights Council investigation, Human Rights Watch, Amnesty International, WHO",
+                "image": "/api/placeholder/600/400"
             },
             {
-                type: 'historic-event',
-                date: '2008-12-27',
-                title: 'Operation Cast Lead Begins',
-                description: 'Israeli military operation in Gaza that resulted in significant civilian casualties and destruction of infrastructure.',
-                details: 'Operation Cast Lead was a three-week armed conflict that began on December 27, 2008. The UN Fact Finding Mission reported that 1,383 Palestinians were killed, including 333 children. The operation caused widespread destruction of homes, schools, hospitals, and infrastructure.',
-                sources: 'UN Reports, human rights organizations'
+                "type": "historic-event",
+                "date": "2019-05-03",
+                "title": "UN Warning on Gaza Collapse",
+                "description": "The United Nations warned that Gaza was 'on the verge of collapse' due to the ongoing blockade and recurring conflicts.",
+                "details": "The UN Special Coordinator for the Middle East Peace Process warned that Gaza was 'on the verge of collapse' due to the prolonged blockade, deteriorating infrastructure, recurring conflicts, and internal Palestinian division. UN agencies reported that 53% of Gazans lived in poverty, 70% were food insecure, and unemployment had reached record levels, particularly among youth.",
+                "sources": "UN Office for the Coordination of Humanitarian Affairs (OCHA), World Bank, UN Development Programme",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2021-05-10",
+                "title": "May 2021 Israel-Gaza Conflict",
+                "description": "Eleven days of intense fighting between Israel and Hamas resulted in significant casualties and destruction in Gaza.",
+                "details": "Eleven days of fighting between Israel and Hamas resulted in at least 256 Palestinian deaths in Gaza, including 66 children, according to the Gaza health ministry. Thirteen people were killed in Israel, including two children. The conflict began following tensions in Jerusalem, including threatened evictions in Sheikh Jarrah and Israeli police actions at Al-Aqsa Mosque. Hamas fired rockets into Israel, and Israel carried out extensive airstrikes in Gaza, causing significant damage to infrastructure, homes, and medical facilities.",
+                "sources": "UN Office for the Coordination of Humanitarian Affairs (OCHA), Human Rights Watch, Palestinian Ministry of Health, Israeli government reports",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2023-10-07",
+                "title": "Hamas Attack and Beginning of Israel-Gaza War",
+                "description": "Hamas launched an unprecedented attack on Israel, triggering a devastating Israeli military response in Gaza.",
+                "details": "Hamas and other Palestinian armed groups launched a surprise attack on Israel, killing approximately 1,200 people, mostly civilians, and taking about 250 hostages according to Israeli officials. In response, Israel launched a massive military campaign in Gaza, implementing a complete siege, cutting off water, electricity, and fuel supplies. The Israeli military campaign has included intensive bombardment and a ground invasion across Gaza.",
+                "sources": "UN reports, Human Rights Watch, news sources, Israeli government statements, Hamas statements",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2023-10-13",
+                "title": "Gaza Evacuation Order",
+                "description": "Israel ordered the evacuation of northern Gaza, displacing over a million Palestinians.",
+                "details": "The Israeli military ordered the evacuation of all civilians from northern Gaza, including Gaza City, ahead of a planned ground invasion. This order affected over a million people, many of whom were forced to flee to southern Gaza with limited provisions under ongoing bombardment. The UN and humanitarian organizations warned that such a mass evacuation was impossible to carry out safely and would result in a humanitarian catastrophe.",
+                "sources": "UN statements, Israeli military announcements, humanitarian organizations' reports",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2023-11-15",
+                "title": "Al-Shifa Hospital Crisis",
+                "description": "Israeli forces surrounded and raided Gaza's largest hospital, Al-Shifa, amid a humanitarian catastrophe.",
+                "details": "Israeli forces surrounded and then raided Al-Shifa Hospital, Gaza's largest medical facility, claiming Hamas was using it as a command center. The siege and subsequent raid occurred amid dire conditions in the hospital, with reports of patients, including premature babies, dying due to lack of electricity, medical supplies, and clean water. Medical staff and international organizations reported a humanitarian catastrophe, with thousands of patients, medical workers, and displaced civilians trapped in the facility.",
+                "sources": "World Health Organization, Médecins Sans Frontières, UN statements, Al-Shifa Hospital staff reports",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2024-01-26",
+                "title": "International Court of Justice Preliminary Ruling",
+                "description": "The ICJ ordered Israel to take measures to prevent acts of genocide in Gaza but did not order a ceasefire.",
+                "details": "The International Court of Justice issued a preliminary ruling in the case brought by South Africa accusing Israel of genocide in Gaza. The court ordered Israel to take measures to prevent acts of genocide and improve the humanitarian situation in Gaza, but stopped short of ordering a ceasefire. The court also ordered Israel to preserve evidence and report back on its compliance with the measures. This represented a significant international legal development in the conflict.",
+                "sources": "International Court of Justice ruling, United Nations statements, legal analyses",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2024-05-07",
+                "title": "Rafah Offensive Begins",
+                "description": "Israel launched a military offensive in Rafah despite international warnings about catastrophic humanitarian consequences.",
+                "details": "Israel launched a ground offensive into Rafah in southern Gaza, where over a million displaced Palestinians had sought refuge. This came despite warnings from the United Nations, the United States, and other international actors about the catastrophic humanitarian consequences. The offensive began with the capture of the Rafah border crossing with Egypt, a crucial entry point for humanitarian aid, further complicating relief efforts for Gaza's population.",
+                "sources": "UN Office for the Coordination of Humanitarian Affairs (OCHA), Human Rights Watch, news sources",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2024-07-18",
+                "title": "UN Report on Gaza Child Deaths",
+                "description": "The United Nations reported that children in Gaza were dying at an unprecedented rate in modern conflicts.",
+                "details": "The United Nations released a report stating that children in Gaza were dying at an unprecedented rate compared to other modern conflicts. According to UN data, over 15,000 children had been killed in Gaza since October 2023, representing approximately 40% of the total death toll. The report highlighted that this was the highest number and proportion of children killed in any conflict in recent history, constituting what UNICEF called a 'war on children.'",
+                "sources": "United Nations Children's Fund (UNICEF), World Health Organization, UN Office for the Coordination of Humanitarian Affairs (OCHA)",
+                "image": "/api/placeholder/600/400"
+            },
+            {
+                "type": "historic-event",
+                "date": "2024-09-28",
+                "title": "One-Year Anniversary of War",
+                "description": "The Israel-Gaza war reached the one-year mark with devastating humanitarian consequences.",
+                "details": "The Israel-Gaza war reached its one-year anniversary, with humanitarian organizations reporting catastrophic conditions. According to the Gaza Health Ministry and UN estimates, the death toll had surpassed a reported 40,000 Palestinians, with many more injured and missing under rubble. Much of Gaza's infrastructure lay in ruins, with hospitals, schools, universities, and historic sites destroyed or severely damaged. Over 90% of Gaza's population had been displaced at least once, with many displaced multiple times. Famine conditions were reported in parts of Gaza, with the entire population facing severe food insecurity.",
+                "sources": "UN Office for the Coordination of Humanitarian Affairs (OCHA), Gaza Health Ministry, World Food Programme, Integrated Food Security Phase Classification (IPC)",
+                "image": "/api/placeholder/600/400"
             }
         ];
-        
+
         // DOM elements
         const timelineContainer = document.getElementById('timeline-container');
         const adminToggle = document.getElementById('admin-toggle');
@@ -771,14 +872,14 @@
         const cancelBtn = document.getElementById('cancel-btn');
         const entryType = document.getElementById('entry-type');
         const loadingIndicator = document.getElementById('loading');
-        
+
         // Show/hide fields based on entry type
         entryType.addEventListener('change', toggleFormFields);
-        
+
         function toggleFormFields() {
             const memorialFields = document.querySelectorAll('.memorial-field');
             const historicFields = document.querySelectorAll('.historic-field');
-            
+
             if (entryType.value === 'memorial') {
                 memorialFields.forEach(field => field.style.display = 'block');
                 historicFields.forEach(field => field.style.display = 'none');
@@ -787,22 +888,22 @@
                 historicFields.forEach(field => field.style.display = 'block');
             }
         }
-        
+
         // Toggle admin form
         adminToggle.addEventListener('click', () => {
             adminForm.style.display = adminForm.style.display === 'none' ? 'block' : 'none';
         });
-        
+
         // Cancel button
         cancelBtn.addEventListener('click', () => {
             adminForm.style.display = 'none';
             entryForm.reset();
         });
-        
+
         // Form submit handler
-        entryForm.addEventListener('submit', function(e) {
+        entryForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const newEntry = {
                 type: entryType.value,
                 date: document.getElementById('entry-date').value,
@@ -810,48 +911,48 @@
                 details: document.getElementById('entry-details').value,
                 sources: document.getElementById('entry-sources').value
             };
-            
+
             if (entryType.value === 'memorial') {
                 newEntry.name = document.getElementById('entry-name').value;
                 newEntry.age = document.getElementById('entry-age').value;
             } else {
                 newEntry.title = document.getElementById('entry-title').value;
             }
-            
+
             // In a real implementation, you would send this data to a server
             // For now, we'll just add it to our local array and refresh the display
             timelineData.push(newEntry);
             timelineData.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
+
             renderTimelineItems();
             adminForm.style.display = 'none';
             entryForm.reset();
-            
+
             alert('Entry added successfully!');
         });
-        
+
         // Render timeline items
         function renderTimelineItems() {
             timelineContainer.innerHTML = '';
-            
+
             timelineData.forEach((item, index) => {
                 const isEven = index % 2 === 0;
                 const timelineItem = document.createElement('div');
                 timelineItem.className = `timeline-item ${isEven ? 'left' : 'right'}`;
-                
+
                 const formattedDate = new Date(item.date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                 });
-                
+
                 let title = '';
                 if (item.type === 'memorial') {
                     title = `${item.name}, age ${item.age}`;
                 } else {
                     title = item.title;
                 }
-                
+
                 timelineItem.innerHTML = `
                     <div class="content ${item.type}">
                         <div class="date">${formattedDate}</div>
@@ -864,16 +965,16 @@
                         <button class="expand-btn" data-index="${index}">Read more</button>
                     </div>
                 `;
-                
+
                 timelineContainer.appendChild(timelineItem);
             });
-            
+
             // Add event listeners to expand buttons
             document.querySelectorAll('.expand-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const index = this.getAttribute('data-index');
                     const details = document.getElementById(`details-${index}`);
-                    
+
                     if (details.style.display === 'block') {
                         details.style.display = 'none';
                         this.textContent = 'Read more';
@@ -884,34 +985,35 @@
                 });
             });
         }
-        
+
         // Initialize form fields
         toggleFormFields();
-        
+
         // Render initial timeline
         renderTimelineItems();
-        
+
         // Infinite scrolling implementation
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
                 loadMoreItems();
             }
         });
-        
+
         function loadMoreItems() {
             // In a real implementation, this would fetch more data from a server
             // For demo purposes, we'll just simulate loading with a delay
             loadingIndicator.style.display = 'block';
-            
+
             setTimeout(() => {
                 loadingIndicator.style.display = 'none';
-                
+
                 // In a real app, you would add the new items to the timelineData array
                 // and call renderTimelineItems() again
-                
+
                 // For this demo, we won't add more items since it's just a prototype
             }, 1500);
         }
     </script>
 </body>
+
 </html>
