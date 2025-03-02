@@ -1,391 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaza Memorial Timeline</title>
     <style>
-        :root {
-            --main-bg-color: #121212;
-            --timeline-color: #6c757d;
-            --card-bg-color: #1e1e1e;
-            --header-color: #0a0a0a;
-            --text-color: #e0e0e0;
-            --secondary-text: #aaaaaa;
-            --accent-color: #b3424a;
-            --subtle-accent: rgba(179, 66, 74, 0.2);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--main-bg-color);
-            color: var(--text-color);
-            background-image: url('/api/placeholder/1600/900');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            background-blend-mode: overlay;
-            min-height: 100vh;
-        }
-
-        body:before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: -1;
+            background-color: #121212;
+            color: #f5f5f5;
+            overflow-x: hidden;
         }
 
         header {
-            background-color: var(--header-color);
-            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), 
+                        url('https://via.placeholder.com/1920x600') center/cover no-repeat;
+            padding: 6rem 0;
             text-align: center;
-            padding: 3rem 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        header:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('/api/placeholder/1200/600');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            opacity: 0.4;
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-top: 1.5rem;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* Bubble Memory Design */
+        .memory-field {
             position: relative;
-        }
-
-        h1 {
-            margin: 0;
-            font-weight: 400;
-            font-size: 2.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            font-weight: 300;
-            opacity: 0.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .quote {
-            font-style: italic;
-            opacity: 0.7;
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding-bottom: 4rem;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--timeline-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-            box-sizing: border-box;
-            margin-bottom: 40px;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--main-bg-color);
-            border: 4px solid var(--timeline-color);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .right::after {
-            left: -10px;
-        }
-
-        .content {
-            padding: 25px;
-            background-color: var(--card-bg-color);
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-        }
-
-        .date {
-            font-weight: bold;
-            color: var(--secondary-text);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .name {
-            font-size: 1.4rem;
-            margin: 0.7rem 0;
-            color: var(--text-color);
-        }
-
-        .description {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .details {
-            margin-top: 1.5rem;
-            display: none;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            line-height: 1.7;
-        }
-
-        .image-container {
-            margin: 1rem 0;
+            min-height: 100vh;
+            padding: 4rem 0;
             overflow: hidden;
-            border-radius: 4px;
-            max-height: 250px;
         }
 
-        .timeline-image {
-            width: 100%;
-            height: auto;
-            transition: all 0.5s ease;
-            display: block;
-        }
-
-        .content:hover .timeline-image {
-            transform: scale(1.05);
-        }
-
-        .sources {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
-        .expand-btn {
-            background: none;
-            border: none;
-            color: var(--accent-color);
-            cursor: pointer;
-            padding: 8px 16px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-            border: 1px solid var(--accent-color);
-            display: block;
-            width: 100%;
-        }
-
-        .expand-btn:hover {
-            background-color: var(--subtle-accent);
-        }
-
-        .historic-event {
-            border-left: 4px solid #6c757d;
-        }
-
-        .memorial {
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .historic-event .date:before {
-            content: "Historic Event • ";
-        }
-
-        .memorial .date:before {
-            content: "Memorial • ";
-        }
-
-        .age {
-            display: inline-block;
-            background-color: var(--subtle-accent);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            display: none;
-            color: var(--secondary-text);
-        }
-
-        .loading:after {
-            content: "...";
-            animation: dots 1.5s infinite;
-        }
-
-        @keyframes dots {
-
-            0%,
-            20% {
-                content: ".";
-            }
-
-            40% {
-                content: "..";
-            }
-
-            60%,
-            100% {
-                content: "...";
-            }
-        }
-
-        #admin-form {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: rgba(30, 30, 30, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #333;
-            border-radius: 4px;
-            background-color: #2c2c2c;
-            color: var(--text-color);
-            font-family: inherit;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 2px var(--subtle-accent);
-        }
-
-        button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s;
-        }
-
-        button:hover {
-            background-color: #a13841;
-            transform: translateY(-2px);
-        }
-
-        .admin-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(30, 30, 30, 0.8);
-            color: white;
-            border: 1px solid var(--accent-color);
-            padding: 10px;
+        .memory-bubble {
+            position: absolute;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .memory-bubble:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .memory-bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .memory-bubble:hover:before {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(-2deg);
+            }
+        }
+
+        /* Memory Details */
+        .memory-details {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            overflow-y: auto;
+        }
+
+        .memory-details.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .memory-content {
+            max-width: 800px;
+            width: 90%;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .memory-details.active .memory-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .memory-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #f5f5f5;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
-        .admin-toggle:hover {
-            background-color: var(--accent-color);
-            transform: rotate(90deg);
+        .memory-close:hover {
+            opacity: 1;
         }
 
+        .memory-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .memory-date {
+            color: #aa86f8;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .memory-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .memory-description {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .memory-details-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .memory-sources {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Audio Controls */
         .audio-control {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            background-color: rgba(30, 30, 30, 0.8);
-            color: white;
-            border: 1px solid var(--accent-color);
-            padding: 10px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
             border-radius: 30px;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #f5f5f5;
             display: flex;
             align-items: center;
-            font-size: 0.9rem;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .audio-control:hover {
+            background-color: rgba(30, 30, 30, 0.9);
         }
 
         .audio-icon {
@@ -393,110 +233,186 @@
             font-size: 1.2rem;
         }
 
-        .candle-container {
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.6;
+            font-style: italic;
+        }
+
+        /* Admin Form */
+        #admin-form {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            z-index: -1;
-            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
+            padding: 2rem;
+            border-radius: 8px;
+            z-index: 200;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
         }
 
-        .candle {
-            width: 12px;
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #f5f5f5;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #aa86f8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #9169f7;
+        }
+
+        #cancel-btn {
+            background-color: transparent;
+            border: 1px solid #444;
+            margin-left: 10px;
+        }
+
+        #cancel-btn:hover {
+            background-color: #333;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
             height: 40px;
-            background: linear-gradient(to bottom, #ff9d00, #ff6a00);
-            border-radius: 6px 6px 0 0;
-            position: relative;
-            opacity: 0.7;
+            border-radius: 50%;
+            background-color: #aa86f8;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            transition: background-color 0.3s ease;
         }
 
-        .candle:before {
-            content: "";
+        .admin-toggle:hover {
+            background-color: #9169f7;
+        }
+
+        /* Floating rain drop effect */
+        .raindrop {
             position: absolute;
-            top: -15px;
-            left: 3px;
-            width: 6px;
-            height: 15px;
-            background: radial-gradient(#fff, #ff9d00);
-            border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 20px #fff, 0 0 40px #ff9d00, 0 0 60px #ff9d00, 0 0 80px #ff9d00;
-            animation: flicker 1s ease-in-out infinite alternate;
+            width: 2px;
+            background-color: rgba(170, 134, 248, 0.3);
+            border-radius: 50%;
+            animation: rain linear infinite;
+            opacity: 0;
         }
 
-        @keyframes flicker {
-
-            0%,
-            100% {
-                opacity: 1;
+        @keyframes rain {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
             }
-
-            25% {
-                opacity: 0.8;
-            }
-
-            50% {
-                opacity: 0.9;
-            }
-
-            75% {
+            10% {
                 opacity: 0.7;
             }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px));
+                opacity: 0;
+            }
         }
 
+        /* Info Box */
         .info-box {
-            position: absolute;
+            position: fixed;
+            left: 20px;
             top: 20px;
-            right: 20px;
-            background-color: rgba(30, 30, 30, 0.9);
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 15px;
             border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
+            z-index: 10;
             max-width: 300px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.5s ease;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            transition: opacity 0.5s ease;
         }
 
-        .info-box.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .info-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
-        @media screen and (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
+        .info-box p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 0.8rem;
+        }
 
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-                margin-bottom: 30px;
-            }
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
 
-            .timeline-item::after {
-                left: 21px;
-                right: auto;
-            }
-
-            .left,
-            .right {
-                left: 0;
-            }
-
+        /* Responsive design */
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .memory-title {
+                font-size: 1.5rem;
+            }
+
+            .info-box {
+                top: auto;
+                bottom: 80px;
+                left: 20px;
+                max-width: calc(100% - 40px);
             }
         }
     </style>
 </head>
-
 <body>
     <header>
         <div class="container">
@@ -508,19 +424,34 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="timeline" id="timeline-container">
-            <!-- Timeline items will be inserted here by JavaScript -->
-        </div>
+    <div class="memory-field" id="memory-field">
+        <!-- Memory bubbles will be inserted here by JavaScript -->
+    </div>
 
-        <div class="loading" id="loading">
-            Loading more entries
+    <div class="loading" id="loading">
+        Loading more memories...
+    </div>
+
+    <!-- Memory Detail View (Hidden by default) -->
+    <div class="memory-details" id="memory-details">
+        <div class="memory-content">
+            <button class="memory-close" id="memory-close">×</button>
+            <img class="memory-image" id="detail-image" src="https://via.placeholder.com/800x400" alt="Memory Image">
+            <p class="memory-date" id="detail-date">Date</p>
+            <h3 class="memory-title" id="detail-title">Title</h3>
+            <p class="memory-description" id="detail-description">Description</p>
+            <div class="memory-details-section" id="detail-details">
+                Additional details will be shown here.
+            </div>
+            <div class="memory-sources" id="detail-sources">
+                <strong>Sources:</strong> Source information will be shown here.
+            </div>
         </div>
     </div>
 
     <!-- Admin Form (Hidden by default) -->
     <div id="admin-form" style="display: none;">
-        <h2>Add New Entry</h2>
+        <h2>Add New Memory</h2>
         <form id="entry-form">
             <div class="form-group">
                 <label for="entry-type">Entry Type:</label>
@@ -570,7 +501,7 @@
                 <textarea id="entry-sources" name="sources" rows="2"></textarea>
             </div>
 
-            <button type="submit">Save Entry</button>
+            <button type="submit">Save Memory</button>
             <button type="button" id="cancel-btn">Cancel</button>
         </form>
     </div>
@@ -581,25 +512,21 @@
     </div>
 
     <audio id="background-music" loop>
-        <source src="https://cdnjs.cloudflare.com/ajax/libs/SoundJS/1.0.2/soundjs.min.js" type="audio/mpeg">
-        <!-- In a real implementation, you would use an actual music file instead of this CDN link -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
     </audio>
 
     <button class="admin-toggle" id="admin-toggle">+</button>
-
-    <div class="candle-container" id="candle-container">
-        <!-- Candles will be inserted here by JavaScript -->
-    </div>
 
     <div class="info-box" id="info-box">
         <h3>About This Timeline</h3>
         <p>This memorial timeline documents the historical events in Gaza and honors the innocent lives lost during
             conflicts.</p>
-        <p>Scroll down to explore more stories and historical moments.</p>
+        <p>Click on the floating images to explore stories and historical moments.</p>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        // Sample extended data
+        // Sample extended data (for demonstration)
         const timelineData = [
             {
                 "type": "historic-event",
@@ -865,13 +792,42 @@
         ];
 
         // DOM elements
-        const timelineContainer = document.getElementById('timeline-container');
+        const memoryField = document.getElementById('memory-field');
+        const memoryDetails = document.getElementById('memory-details');
+        const memoryClose = document.getElementById('memory-close');
         const adminToggle = document.getElementById('admin-toggle');
         const adminForm = document.getElementById('admin-form');
         const entryForm = document.getElementById('entry-form');
         const cancelBtn = document.getElementById('cancel-btn');
         const entryType = document.getElementById('entry-type');
         const loadingIndicator = document.getElementById('loading');
+        const audioControl = document.getElementById('audio-control');
+        const audioText = document.getElementById('audio-text');
+        const backgroundMusic = document.getElementById('background-music');
+        
+        // Set sad music appropriate for memorial
+        backgroundMusic.src = "https://dl.dropboxusercontent.com/s/p7qyh1letrb6lmf/Adagio_for_Strings_-_Samuel_Barber_Orchestral.mp3";
+        
+        // Audio control functionality
+        let isMusicPlaying = false;
+        audioControl.addEventListener('click', toggleMusic);
+        
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                audioText.textContent = "Play Background Music";
+                isMusicPlaying = false;
+            } else {
+                // We need to start playing only after interaction due to browser autoplay policies
+                backgroundMusic.play().then(() => {
+                    audioText.textContent = "Pause Background Music";
+                    isMusicPlaying = true;
+                }).catch(err => {
+                    console.log("Audio playback error:", err);
+                    audioText.textContent = "Unable to play (Try again)";
+                });
+            }
+        }
 
         // Show/hide fields based on entry type
         entryType.addEventListener('change', toggleFormFields);
@@ -900,6 +856,11 @@
             entryForm.reset();
         });
 
+        // Close memory details
+        memoryClose.addEventListener('click', () => {
+            memoryDetails.classList.remove('active');
+        });
+
         // Form submit handler
         entryForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -909,7 +870,8 @@
                 date: document.getElementById('entry-date').value,
                 description: document.getElementById('entry-description').value,
                 details: document.getElementById('entry-details').value,
-                sources: document.getElementById('entry-sources').value
+                sources: document.getElementById('entry-sources').value,
+                image: document.getElementById('entry-image').value || `https://via.placeholder.com/400x400?text=New+Entry`
             };
 
             if (entryType.value === 'memorial') {
@@ -919,101 +881,137 @@
                 newEntry.title = document.getElementById('entry-title').value;
             }
 
-            // In a real implementation, you would send this data to a server
-            // For now, we'll just add it to our local array and refresh the display
+            // Add new entry to our data
             timelineData.push(newEntry);
             timelineData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            renderTimelineItems();
+            // Re-render memory bubbles
+            renderMemoryBubbles();
+            
             adminForm.style.display = 'none';
             entryForm.reset();
 
-            alert('Entry added successfully!');
+            alert('Memory added successfully!');
         });
 
-        // Render timeline items
-        function renderTimelineItems() {
-            timelineContainer.innerHTML = '';
+        // Create and render memory bubbles
+        function renderMemoryBubbles() {
+            memoryField.innerHTML = '';
 
+            // Create raindrops effect
+            for (let i = 0; i < 30; i++) {
+                const raindrop = document.createElement('div');
+                raindrop.className = 'raindrop';
+                raindrop.style.left = `${Math.random() * 100}%`;
+                raindrop.style.height = `${Math.random() * 80 + 20}px`;
+                raindrop.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                raindrop.style.animationDelay = `${Math.random() * 5}s`;
+                memoryField.appendChild(raindrop);
+            }
+
+            // Create memory bubbles
             timelineData.forEach((item, index) => {
-                const isEven = index % 2 === 0;
-                const timelineItem = document.createElement('div');
-                timelineItem.className = `timeline-item ${isEven ? 'left' : 'right'}`;
-
-                const formattedDate = new Date(item.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-
-                let title = '';
-                if (item.type === 'memorial') {
-                    title = `${item.name}, age ${item.age}`;
-                } else {
-                    title = item.title;
-                }
-
-                timelineItem.innerHTML = `
-                    <div class="content ${item.type}">
-                        <div class="date">${formattedDate}</div>
-                        <h3 class="name">${title}</h3>
-                        <p>${item.description}</p>
-                        <div class="details" id="details-${index}">
-                            <p>${item.details}</p>
-                            ${item.sources ? `<p><strong>Sources:</strong> ${item.sources}</p>` : ''}
-                        </div>
-                        <button class="expand-btn" data-index="${index}">Read more</button>
-                    </div>
-                `;
-
-                timelineContainer.appendChild(timelineItem);
+                const bubble = document.createElement('div');
+                bubble.className = 'memory-bubble';
+                
+                // Randomize bubble size between 80px and 180px
+                const size = Math.random() * 100 + 80;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Position randomly but ensure good distribution
+                bubble.style.left = `${15 + Math.random() * 70}%`;
+                bubble.style.top = `${index * 150 + Math.random() * 100}px`;
+                
+                // Set animation delay
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Set background image
+                bubble.style.backgroundImage = `url('${item.image || `https://via.placeholder.com/400x400?text=${item.type === 'memorial' ? item.name : item.title}`}')`;
+                
+                // Store item data
+                bubble.dataset.index = index;
+                
+                // Add event listener
+                bubble.addEventListener('click', () => showMemoryDetails(index));
+                
+                memoryField.appendChild(bubble);
             });
+        }
 
-            // Add event listeners to expand buttons
-            document.querySelectorAll('.expand-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const index = this.getAttribute('data-index');
-                    const details = document.getElementById(`details-${index}`);
-
-                    if (details.style.display === 'block') {
-                        details.style.display = 'none';
-                        this.textContent = 'Read more';
-                    } else {
-                        details.style.display = 'block';
-                        this.textContent = 'Show less';
-                    }
-                });
+        // Show memory details
+        function showMemoryDetails(index) {
+            const item = timelineData[index];
+            
+            // Format date
+            const formattedDate = new Date(item.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
             });
+            
+            // Set content
+            document.getElementById('detail-image').src = item.image || `https://via.placeholder.com/800x400?text=${item.type === 'memorial' ? item.name : item.title}`;
+            document.getElementById('detail-date').textContent = formattedDate;
+            
+            if (item.type === 'memorial') {
+                document.getElementById('detail-title').textContent = `${item.name}, age ${item.age}`;
+            } else {
+                document.getElementById('detail-title').textContent = item.title;
+            }
+            
+            document.getElementById('detail-description').textContent = item.description;
+            document.getElementById('detail-details').textContent = item.details || 'No additional details available.';
+            document.getElementById('detail-sources').innerHTML = item.sources ? `<strong>Sources:</strong> ${item.sources}` : 'No sources provided.';
+            
+            // Show details with animation
+            memoryDetails.classList.add('active');
         }
 
         // Initialize form fields
         toggleFormFields();
 
-        // Render initial timeline
-        renderTimelineItems();
+        // Render initial memory bubbles
+        renderMemoryBubbles();
 
         // Infinite scrolling implementation
         window.addEventListener('scroll', function () {
             if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
-                loadMoreItems();
+                // Only load more if we're not at the end of our data
+                if (memoryField.childElementCount < 100) { // Arbitrary limit
+                    loadMoreMemories();
+                }
             }
         });
 
-        function loadMoreItems() {
+        function loadMoreMemories() {
             // In a real implementation, this would fetch more data from a server
-            // For demo purposes, we'll just simulate loading with a delay
             loadingIndicator.style.display = 'block';
 
             setTimeout(() => {
                 loadingIndicator.style.display = 'none';
-
-                // In a real app, you would add the new items to the timelineData array
-                // and call renderTimelineItems() again
-
-                // For this demo, we won't add more items since it's just a prototype
+                
+                // In a real app, you would add new entries to timelineData here
+                // For this prototype, we'll just extend the memory field height
+                memoryField.style.minHeight = (parseInt(memoryField.style.minHeight || '100vh') + 100) + 'vh';
             }, 1500);
         }
+
+        // Allow memory details to be closed when clicking outside
+        memoryDetails.addEventListener('click', function(e) {
+            if (e.target === memoryDetails) {
+                memoryDetails.classList.remove('active');
+            }
+        });
+
+        // Show info box temporarily and fade out
+        setTimeout(() => {
+            document.getElementById('info-box').style.opacity = '0.7';
+        }, 1000);
+        
+        setTimeout(() => {
+            document.getElementById('info-box').style.opacity = '0';
+        }, 8000);
     </script>
 </body>
-
 </html>
